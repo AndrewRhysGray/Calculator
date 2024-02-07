@@ -49,10 +49,20 @@
     <button class="button" id="three">3</button>
     <button class="button" id="two">2</button>
     <button class="button" id="one">1</button>
+    <button class="button" id="delete"><div></div></button>
+
 </body>
 
 <script>
     const buttons = document.querySelectorAll("button");
+
+    const deleteButton = document.getElementById('delete');
+
+deleteButton.addEventListener('click', () => {
+    output.value = currentText = output.value;
+    let currentText = output.value;
+    output.value = currentText.substring(0, currentText.length - 1);
+
 
     const output = document.getElementById('output');
 
