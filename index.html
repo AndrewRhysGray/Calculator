@@ -47,7 +47,10 @@
 
 
 const buttons = document.querySelectorAll("button");
-console.log(forEach.click(button))
+
+buttons.forEach(button => {
+     button.addEventListener(click, console.log(button.id))
+})
 </script>
 
 </html>
