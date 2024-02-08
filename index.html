@@ -84,10 +84,10 @@ function calculate(n1, n2, expression) {
     // Try to do something
     try {
         // Return the result of evaluating the expression
-        return eval(expession); // Bug: Typo in variable name "expession"
+        return eval(expression); 
     } 
     // If something goes wrong, catch the error
-    catch error {
+    catch (error) {
         // Return an error message
         return "Error";
     }
@@ -112,8 +112,25 @@ deleteButton.addEventListener('click', () => {
     let currentText = output.value;
     output.value = currentText.substring(0, currentText.length - 1);
 });
-
-//Equals function
+// equals function
+equalsButton.addEventListener('click', () => {
+    // Get the text from the output area
+    let expression = output.value;
+    // Define a variable to hold the result
+    let result;
+    // Try to evaluate the expression
+    try {
+        // Use JavaScript's eval() function to do the math
+        result = eval(expression);
+        // Display the result in the output area
+        output.value = result;
+    } 
+    // If something goes wrong during evaluation, catch the error
+    catch (error) {
+        // Display an error message in the output area
+        output.value = 'Error';
+    }
+});
 
 
     </script>
