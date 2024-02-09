@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .button {
             background-color: #04AA6D;
@@ -20,6 +21,11 @@
         #delete {
             padding:13px;
             font-size:22px;
+        }
+        
+        #add {
+            padding: 23px;
+            font-size:26px
         }
 
 
@@ -79,82 +85,42 @@
 
     <script>
 const buttons = document.querySelectorAll("button");
-const deleteButton = document.getElementById('delete');
 const output = document.getElementById('output');
 
-// Calculator functions
-function add(n1, n2) {
-    return n1 + n2;
+//function
+function appendToOutput(button) {
+    output.value += button.textContent;
+
 }
 
-function subtract(n1, n2) {
-    return n1 - n2;
+function deleteLastCharacter() {
+    output.value = output.value.slice(0, -1);
 }
 
-function multiply(n1, n2) {
-    return n1 * n2;
-}
-
-function divide(n1, n2) {
-    if (n2 === 0) {
-        return "Cannot divide by zero";
-    }
-    return n1 / n2;
-}
-
-function calculate(n1, n2, expression) {
-    // Try to do something
-    try {
-        // Return the result of evaluating the expression
-        return eval(expression); 
-    } 
-    // If something goes wrong, catch the error
-    catch (error) {
-        // Return an error message
-        return "Error";
-    }
-}
-
-
-// Test logs
-console.log("Addition:", add(5, 3));
-console.log("Subtraction:", subtract(10, 4));
-console.log("Multiplication:", multiply(2, 6));
-console.log("Division:", divide(20, 5));
-
-// Button event listeners
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        output.value += button.textContent;
-    });
-});
-
-// Delete button event listener
-deleteButton.addEventListener('click', () => {
-    let currentText = output.value;
-    output.value = currentText.substring(0, currentText.length - 1);
-});
-// equals function
-equalsButton.addEventListener('click', () => {
-    // Get the text from the output area
+//Calculation function
+function calculate () {
     let expression = output.value;
-    // Define a variable to hold the result
-    let result;
-    // Try to evaluate the expression
     try {
-        // Use JavaScript's eval() function to do the math
-        result = eval(expression);
-        // Display the result in the output area
+        let result = eval(expression);
         output.value = result;
-    } 
-    // If something goes wrong during evaluation, catch the error
-    catch (error) {
-        // Display an error message in the output area
+    } catch (error) {
         output.value = 'Error';
     }
-});
+}
 
+//Add event listeners
 
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+if (button.id === 'delete') {
+    deleteLastCharacter();
+} else if (button.id === 'equals') {
+    calculate();
+} else {
+    appendToOutput(button);
+}      
+    })
+})
     </script>
 </body>
 
