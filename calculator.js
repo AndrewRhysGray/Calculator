@@ -43,3 +43,30 @@ deleteButton.addEventListener('click', () => {
     let currentText = output.value;
     output.value = currentText.substring(0, currentText.length - 1);
 });
+
+//Equals button
+equalsButton.addEventListener('click', () => {
+    const expression = output.value;
+    try {
+        const result = eval(expression);
+        output.value = result;
+        } catch (error) {
+            output.value = 'Error'
+        }
+})
+
+//Button event listeners
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const buttonText = button.textContent;
+        if (buttonText === '.') {
+            // Check if decimal already exists in ourput
+            if (!output.value.includes('.')) {
+                output.value += buttonText;
+            {
+                
+            }
+            }
+        }
+    })
+})
